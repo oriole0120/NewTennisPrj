@@ -11,21 +11,43 @@ import com.htmtennis.prj.model.Information;
 
 public class MyBInformationDao implements InformationDao {
 
+	/*private SqlSessionFactory factory;
+	private SqlSession sqlSession;
+	private InformationDao informationDao;
+	
+	private void settingSession() {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+	}*/
+	
 	@Override
 	public Information getInformation(String code) {
-		return null;
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+		
+		return informationDao.getInformation(code);
 		
 	}
 
 	@Override
 	public Information prevInformation(String curCode) {
-		return null;
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+		
+		return informationDao.prevInformation(curCode);
 		
 	}
 
 	@Override
 	public Information nextInformation(String curCode) {
-		return null;
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+		
+		return informationDao.nextInformation(curCode);
 		
 	}
 
@@ -33,11 +55,7 @@ public class MyBInformationDao implements InformationDao {
 	public List<Information> getInformations(int page, String query,
 			String field) {
 		
-		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
-		SqlSession sqlSession = factory.openSession(true);
-		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
-		
-		return informationDao.getInformations(page, query, field);
+		return null;
 		
 	}
 
@@ -55,18 +73,35 @@ public class MyBInformationDao implements InformationDao {
 
 	@Override
 	public int insert(Information information) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+		
+		informationDao.insert(information);
+		
 		return 0;
 		
 	}
 
 	@Override
 	public int update(Information information) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+		informationDao.update(information);
+		
 		return 0;
 		
 	}
 
 	@Override
 	public int delete(String code) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+		
+		informationDao.delete(code);
+		
 		return 0;
 		
 	}

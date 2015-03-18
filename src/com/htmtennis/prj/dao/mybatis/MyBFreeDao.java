@@ -6,45 +6,61 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.htmtennis.prj.dao.FreeDao;
+import com.htmtennis.prj.dao.FreeDao;
+import com.htmtennis.prj.dao.PhotoDao;
 import com.htmtennis.prj.model.Free;
 
 public class MyBFreeDao implements FreeDao{
-
-	private SqlSessionFactory factory;
+	
+	/*private SqlSessionFactory factory;
 	private SqlSession sqlSession;
 	private FreeDao freeDao;
 	
 	private void settingSession() {
-		factory = MyBatisMain.getSqlSessionFactory();
-		sqlSession = factory.openSession(true);
-		freeDao = sqlSession.getMapper(FreeDao.class);
-	}
-	
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+	}*/
+
 	@Override
 	public Free getFree(String code) {
-		settingSession();
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+		
 		return freeDao.getFree(code);
 		
 	}
 
 	@Override
 	public Free prevFree(String curCode) {
-		return null;
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+		
+		return freeDao.prevFree(curCode);
 		
 	}
 
 	@Override
 	public Free nextFree(String curCode) {
-		return null;
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+		
+		return freeDao.nextFree(curCode);
 		
 	}
 
 	@Override
 	public List<Free> getFrees(int page, String query, String field) {
 		
-		settingSession();		
-		return freeDao.getFrees(page, query, field);
-		
+		/*SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+
+		return freeDao.getFrees(page, query, field);*/
+		return null;
 	}
 
 /*	@Override
@@ -61,21 +77,39 @@ public class MyBFreeDao implements FreeDao{
 
 	@Override
 	public int insert(Free free) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+		freeDao.insert(free);
+		
 		return 0;
 		
 	}
 
 	@Override
 	public int update(Free free) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+		
+		freeDao.update(free);
+		
 		return 0;
 		
 	}
 
 	@Override
 	public int delete(String code) {
-		settingSession();
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+		
+		/*settingSession();*/
+		
 		freeDao.delete(code);
+		
 		return 0;
+		
 	}
 
 	@Override

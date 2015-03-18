@@ -1,4 +1,8 @@
 ﻿
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@page import="com.htmtennis.prj.dao.mybatis.MyBatisMain"%>
+<%@page import="com.htmtennis.prj.dao.mybatis.MyBFreeDao"%>
+<%@page import="com.htmtennis.prj.dao.FreeDao"%>
 <%@page import="com.htmtennis.prj.dao.jdbc.JdbcFreeDao"%>
 <%@page import="com.htmtennis.prj.model.Free"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
@@ -6,8 +10,18 @@
 
 <%	
 	String _code = request.getParameter("c");
-	Free fr = new JdbcFreeDao().getFree(_code);
+	
+	/* Free fr = new JdbcFreeDao().getFree(_code); */
+	
+	/* SqlSession sqlSession = MyBatisMain.getSqlSessionFactory().openSession(true);
+	FreeDao freeDao = sqlSession.getMapper(FreeDao.class); */
+	
+	FreeDao freeDao = new MyBFreeDao();
+	Free fr = freeDao.getFree(_code);
+	
 	pageContext.setAttribute("fr", fr);
+	pageContext.setAttribute("prev", freeDao.prevFree(_code));
+	pageContext.setAttribute("next", freeDao.nextFree(_code));
 		
 %>
 
@@ -86,14 +100,14 @@
                                    ${fr.contents}
                                 </dd>
                             </dl>
+                            
                             <div id="space-top">
                                 <p class="space-top text-center">
-
-                                    <a class="btn btn-list" href="view.jsp">이전글</a>
+                                    <a class="btn btn-list" href="view.jsp?c=${prev.code}">이전글</a>
                                 </p>
 
                                 <p class="space-top text-center">
-                                    <a class="btn btn-list" href="view.jsp">다음글</a>                                                  			    
+                                    <a class="btn btn-list" href="view.jsp?c=${next.code}">다음글</a>                                                  			    
                                 </p>	
                             </div>
                             
@@ -104,7 +118,7 @@
                                 </p>
                                 
                                 <p class="space-top-two text-center">
-                                	<a href="noticeEdit.jsp?c=${n.code}">수정</a>
+                                	<a href="edit.jsp?c=${fr.code}">수정</a>
                                 </p>
 									
                                 <%-- <p class="space-top-two text-center">    

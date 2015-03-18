@@ -13,23 +13,12 @@
 	pageEncoding="UTF-8"%>
 	
 <%
-	ServletContext ctx = request.getServletContext();
+/* 	ServletContext ctx = request.getServletContext();
 	String path = ctx.getRealPath("/root/members/Community/freeboard/upload");
 	out.print(path + "<br />");
 
-	/* MultipartRequest req = new MultipartRequest(request
-							, path
-							, 1024 * 1024 * 10
-							, "UTF-8"
-							, new DefaultFileRenamePolicy()); */
-
 	String title = request.getParameter("title");
-//	String filename = request.getFilesystemName("file");
 	String content = request.getParameter("content");
-	
-	/* out.print(path + "<br />");
-	out.print(path + "<br />");
-	out.print(path + "<br />"); */
 
 	Free fr = new Free();
 	
@@ -37,34 +26,27 @@
 	fr.setWriter("admin");
 	fr.setContents(content);
 	
-	/* if(filename)
-		free.setFileName();  */
-
-	/* SqlSession sqlSession = MyBatisMain.getSqlSessionFactory().openSession(true); */
-		
-	//FreeDao freeDao = new JdbcFreeDao();
 	FreeDao freeDao = new MyBFreeDao();
 	
-	/* freeDao.insert(free); */
 	freeDao.insert(fr);
 
-	 /* if (req.getFile("file") != null) {
+	response.sendRedirect("list.jsp"); */
+	
+	
+	
+	String code = request.getParameter("code");								
+	String title = request.getParameter("title");								
+	String contents = request.getParameter("content");
+	
+	Free fr = new Free();
+	fr.setCode(code);
+	fr.setTitle(title);
+	fr.setContents(contents);
+	
+	FreeDao freeDao = new MyBFreeDao();
+	freeDao.update(fr);
 
-		String freeCode = freeDao.lastCode();
-
-		FreeFile freeFile = new FreeFile();
-		
-		freeFile.setFilename(filename);
-		freeFile.setFreecode(freeCode);
-		
-		freeFile.setFilename(filename);
-		freeFile.setFilesrc("");
-		freeFile.setFreecode(freeCode);
-
-		FreeFileDao fileDao = new JdbcFreeFileDao();
-		fileDao.insert(freeFile);
-	} */
-	//목록페이지로 이동
-	response.sendRedirect("list.jsp");
+	String url = String.format("view.jsp?c=%s", code);
+	response.sendRedirect(url); 
 %>	
 	

@@ -24,7 +24,7 @@
             <main id="main">
                 <h2 id="main-title-write">   글 작성 </h2>
 
-                 <form id="text-area" action="regProc.jsp" method="post" enctype="multipart/form-data">
+                 <form id="text-area" action="regProc.jsp" method="post">
                     	<fieldset>
 	                    	<legend class="hidden">본문입력필드</legend>
 	                    	
@@ -46,8 +46,8 @@
 							                        sSkinURI: "../../../editor/SmartEditor2Skin.html",
 							                        htParams : {
 							                    		bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-							                    		bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-							                    		bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+							                    		bUseVerticalResizer : false,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+							                    		bUseModeChanger : false,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
 							                    		fOnBeforeUnload : function(){
 							                    			alert("완료!");
 							                    		}
@@ -60,24 +60,10 @@
 							                        fCreator: "createSEditor2"
 							                    });
 							                    
-							                    // 추가 글꼴 목록
-							                    //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-							                    	
-
-							                    /* function pasteHTML() {
-							                    	var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
-							                    	oEditors.getById["content"].exec("PASTE_HTML", [sHTML]);
-							                    }
-
-							                    function showHTML() {
-							                    	var sHTML = oEditors.getById["content"].getIR();
-							                    	alert(sHTML);
-							                    } */
+							                    
 							                    	
 							                    function submitContents(elClickedObj) {
 							                    	oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
-							                    	
 							                    	// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
 							                    	
 							                    	try {
@@ -85,11 +71,7 @@
 							                    	} catch(e) {}
 							                    }
 
-							                    function setDefaultFont() {
-							                    	var sDefaultFont = '맑은고딕';
-							                    	var nFontSize = 20;
-							                    	oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
-							                    }
+							                    
 							                    
 						                	</script>
 				                	
@@ -98,7 +80,7 @@
                     	</fieldset>
                     
 	                    <p id="button-container" class="space-top text-center">
-	                    	<input id="btnreg" type = "submit" value="등록" />
+	                    	<input type="submit" onclick="submitContents(this)"value="등록" />
 	                    	<a href="list.jsp">취소</a>
 	                    </p>
           
