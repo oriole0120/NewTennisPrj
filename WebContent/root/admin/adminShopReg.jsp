@@ -29,7 +29,7 @@
 	List<Shop> list = shopDao.getShops(npage, query, field);
 	
 	pageContext.setAttribute("list", list);
-	pageContext.setAttribute("total", shopDao.getSize(""));
+	pageContext.setAttribute("total", shopDao.getSize("", "TITLE"));
 	
 	
 %>
