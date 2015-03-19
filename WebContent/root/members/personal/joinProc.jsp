@@ -10,6 +10,8 @@
 
 <%
 
+MemberDao memberDao = new JdbcMemberDao();
+
 
 String mid = request.getParameter("mid");
 String pwd = request.getParameter("pwd");
@@ -18,7 +20,7 @@ String name = request.getParameter("name");
 String gender = request.getParameter("gender");
 String email = request.getParameter("email");
 String phone = request.getParameter("phone");
-int studentNum = Integer.parseInt(request.getParameter("studentNum"));
+String studentNum = request.getParameter("studentNum");
 String authority = request.getParameter("authority");
 
 /* 	if(islunar=="lunar")
@@ -37,11 +39,31 @@ member.setPhone(phone);
 member.setStudentNum(studentNum);
 member.setAuthority(authority);
 
+if(member.getMid()!=""&&member.getMid()!=null && member.getPwd()!=""&&member.getPwd()!=null
+&& member.getName()!=""&&member.getName()!=null
+&& member.getEmail()!=""&&member.getEmail()!=null
+&& member.getPhone()!=""&&member.getPhone()!=null
+&& member.getStudentNum()!=""&&member.getStudentNum()!=null){
+	
+memberDao.insert(member);
+}
+
+	/* && pwd == null && pwd.equals("")
+	&& name==null && name.equals("")
+	&& gender==null && gender.equals("")
+	&& email==null && email.equals("")
+	&& phone==null && phone.equals("")
+	&& studentNum==null && studentNum.equals("")
+	&& authority==null && authority.equals(""))
+	 */
+	
+	
+	/* npage=Integer.parseInt(_page); */
+
 
 //System.out.println(join.getMid());
 
-MemberDao memberDao = new JdbcMemberDao();
-memberDao.insert(member);
+
 
 /* if( join.getPwd()!=""&&join.getPwd()!=null
 && join.getName()!=""&&join.getName()!=null

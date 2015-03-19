@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.htmtennis.prj.dao.ShopDao;
-
 import com.htmtennis.prj.model.Shop;
 
 
@@ -40,6 +39,8 @@ public class JdbcShopDao implements ShopDao{
 				s.setAddress(rs.getString("address"));
 				s.setPhoneNumber(rs.getString("phoneNumber"));
 			    s.setSite(rs.getString("site"));
+			    s.setPositionX(rs.getInt("positionX"));
+			    s.setPositionY(rs.getInt("positionY"));
 			  	
 				
 			  	rs.close();
@@ -98,6 +99,8 @@ public class JdbcShopDao implements ShopDao{
 					s.setAddress(rs.getString("address"));
 					s.setPhoneNumber(rs.getString("phoneNumber"));
 				    s.setSite(rs.getString("site"));
+				    s.setPositionX(rs.getInt("positionX"));
+				    s.setPositionY(rs.getInt("positionY"));
 					
 				  	list.add(s);
 			    }
@@ -119,7 +122,7 @@ public class JdbcShopDao implements ShopDao{
 		
 	}
 
-	@Override
+	/*@Override
 	public List<Shop> getShops(int page, String query) {
 		return getShops(page, query, "name");
 		
@@ -129,12 +132,12 @@ public class JdbcShopDao implements ShopDao{
 	public List<Shop> getShops(int page) {
 		return getShops(page, "");
 		
-	}
+	}*/
 
 	@Override
 	public int insert(Shop shop) {
-		String sqlCode = "SELECT NVL(TO_NUMBER(MAX(CODE)), 0)+1 CODE FROM LinkShops";	/*코드를생성하기위해*/
-        String sql = "INSERT INTO LinkShops(CODE, name, address, phoneNumber, site) VALUES(?,?,?,?,?)";
+		String sqlCode = "SELECT isnull(MAX(CAST(CODE as int)), 0)+1 CODE FROM LinkShops";	/*코드를생성하기위해*/
+        String sql = "INSERT INTO LinkShops(CODE, name, address, phoneNumber, site, positionX, positionY) VALUES(?,?,?,?,?,?,?)";
 
         //String url = "jdbc:oracle:thin:@win.newlecture.com:1521:orcl";
         String url = "jdbc:sqlserver://win.newlecture.com:1433;datebaseName=newlecdb";
@@ -156,7 +159,10 @@ public class JdbcShopDao implements ShopDao{
            st.setString(2, shop.getName());
            st.setString(3, shop.getAddress());
            st.setString(4, shop.getPhoneNumber());
-
+           st.setString(5, shop.getSite());
+           st.setInt(6, shop.getPositionX());
+           st.setInt(7, shop.getPositionY());
+           
            int result = st.executeUpdate();
 
            st.close();
@@ -278,10 +284,10 @@ public class JdbcShopDao implements ShopDao{
 		return 0;
 	}
 
-	@Override
+	/*@Override
 	public int getSize(String query) {
 		return getSize(query, "name");
 		
 	}
-
+*/
 }

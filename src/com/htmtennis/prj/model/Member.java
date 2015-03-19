@@ -5,7 +5,7 @@ private String mid;
 private String pwd;
 private String name;
 private String gender;
-private int studentNum;
+private String studentNum;
 private String email;
 private String phone;
 private String authority;
@@ -41,10 +41,10 @@ public String getPhone() {
 public void setPhone(String phone) {
 	this.phone = phone;
 }
-public int getStudentNum() {
+public String getStudentNum() {
 	return studentNum;
 }
-public void setStudentNum(int studentNum) {
+public void setStudentNum(String studentNum) {
 	this.studentNum = studentNum;
 }
 public String getAuthority() {
@@ -63,3 +63,4 @@ public void setGender(String gender) {
 
 
 }
+
