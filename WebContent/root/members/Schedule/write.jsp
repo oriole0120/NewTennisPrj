@@ -28,6 +28,7 @@
   <script>
   $(function() {
     $( "#datepicker" ).datepicker({
+    	format: 'yyyymmdd',
       showOn: "button",
       buttonImage: "img/calendar.gif",
       buttonImageOnly: true,
@@ -57,12 +58,19 @@
             <main id="main">
                 <h2 id="main-title-write">   Schedule 작성 </h2>
 
-                <form id="text-area" action="regProc.jsp" method="post" enctype="multipart/form-data">
+                <form id="text-area" action="regProc.jsp" method="post">
                     	<fieldset>
 	                    	<legend class="hidden">본문입력필드</legend>
 	                    	
 	                    	<dl>
-		                        <dt class="detail-cell-commu title-free newrow"><p>일자<input type="text" id="datepicker"></p></dt>
+	                    	
+	                    		<dt class="detail-cell-commu title-free newrow">제목</dt>
+		                        <dd class="detail-cell text-highlight"><input type="text" name="title" /></dd>
+	                    	
+	                    		<dt class="detail-cell-commu title-free newrow">일정</dt>
+		                        <dd class="detail-cell text-highlight"><input type="text"  id="datepicker" name="eventdate" /></dd>
+		                        
+		                       
 		                        <!-- <dd class="detail-cell-commu text-highlight"><input type="text" name="title" /></dd> -->
 		                        
 		                        <!-- class="hidden" -->
@@ -118,11 +126,7 @@
 							                    	} catch(e) {}
 							                    }
 
-							                    function setDefaultFont() {
-							                    	var sDefaultFont = '맑은고딕';
-							                    	var nFontSize = 20;
-							                    	oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
-							                    }
+							                    
 							                    
 						                	</script>
 				                	
@@ -131,7 +135,7 @@
                     	</fieldset>
                     
 	                    <p id="button-container" class="space-top text-center">
-	                    	<input type = "submit" value="등록" />
+	                    	<input type = "submit" value="등록" onclick="submitContents(this)" />
 	                    	<a href="list.jsp">취소</a>
 	                    </p>
           

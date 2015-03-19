@@ -1,15 +1,10 @@
 
-
-
 <%-- <%@page import="com.htmtennis.prj.dao.mybatis.MyBatisMain"%> --%>
-<%@page import="com.htmtennis.prj.dao.jdbc.JdbcScheduleFileDao"%>
-<%@page import="com.htmtennis.prj.dao.ScheduleFileDao"%>
-<%@page import="com.htmtennis.prj.model.ScheduleFile"%>
+
+<%@page import="java.util.Date"%>
 <%@page import="com.htmtennis.prj.dao.jdbc.JdbcScheduleDao"%>
 <%@page import="com.htmtennis.prj.dao.ScheduleDao"%>
 <%@page import="com.htmtennis.prj.model.Schedule"%>
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 
 <%@page language="java" contentType="text/html; charset=UTF-8"
@@ -20,16 +15,21 @@
 	String path = ctx.getRealPath("/root/members/Schedule/upload");
 	out.print(path + "<br />");
 
-	MultipartRequest req = new MultipartRequest(request
+	/* MultipartRequest req = new MultipartRequest(request
 							, path
 							, 1024 * 1024 * 10
 							, "UTF-8"
-							, new DefaultFileRenamePolicy());
+							, new DefaultFileRenamePolicy()); */
 
-	String title = req.getParameter("title");
-	String schedulename = req.getFilesystemName("file");
-	String content = req.getParameter("content");
-	String eventdate = req.getParameter("eventdate");
+	String title = request.getParameter("title");
+	//String schedulename = request.getFilesystemName("file");
+	String content = request.getParameter("content");
+	//String eventdate = toString(request.getParameter("eventdate"));
+	String eventdate = request.getParameter("eventdate");
+	
+	out.print(eventdate);
+	out.print(title);
+	
 	
 	/* out.print(path + "<br />");
 	out.print(path + "<br />");
@@ -51,7 +51,7 @@
 	ScheduleDao scheduleDao = new JdbcScheduleDao();
 	scheduleDao.insert(s);
 
-	 if (req.getFile("file") != null) {
+	  /* if (req.getFile("file") != null) {
 
 		 String Schedulecode = scheduleDao.lastCode();
 		 
@@ -62,9 +62,9 @@
 		 //scheduleFile.setSchedulevent(schedulevent);
 			
 		 ScheduleFileDao fileDao = new JdbcScheduleFileDao();
-			fileDao.insert(scheduleFile);
+			fileDao.insert(scheduleFile); 
 		 
-	}
+	} */
 	 
 	
 	

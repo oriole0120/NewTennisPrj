@@ -189,7 +189,7 @@ public class JdbcScheduleDao implements ScheduleDao {
 	public int insert(Schedule schedule) {
 
 		String sql1 = "SELECT ISNULL(MAX(CAST(CODE AS INT)), 0)+1 CODE FROM SCHEDULES";
-		String sql = "INSERT INTO Schedules(CODE, WRITER, REGDATE, EVENTDATE, TITLE, CONTENTS,  AUTHORITY) VALUES(?, ?, Getdate(),?, ?, ?,'A')";
+		String sql = "INSERT INTO Schedules(CODE, WRITER, REGDATE, EVENTDATE, TITLE, CONTENTS, AUTHORITY) VALUES(?, ?, Getdate(),?, ?, ?,'A')";
 		String url = "jdbc:sqlserver://win.newlecture.com:1433;databaseName=tennisdb";
 
 
@@ -210,7 +210,7 @@ public class JdbcScheduleDao implements ScheduleDao {
 
 			st.setString(1, code);
 			st.setString(2, "admin");
-			st.setString(3, "2015-03-01");
+			st.setString(3, schedule.getEventdate());
 			st.setString(4, schedule.getTitle());
 			st.setString(5, schedule.getContents());
 
@@ -230,12 +230,10 @@ public class JdbcScheduleDao implements ScheduleDao {
 		}
 
 
-
-
-
 		return 0;
 	}
 
+	
 	@Override
 	public int update(Schedule schedule) {
 

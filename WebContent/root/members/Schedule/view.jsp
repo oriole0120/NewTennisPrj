@@ -105,11 +105,11 @@ pageContext.setAttribute("s", s);
                             
                             <div id="space-top-two">          
                             	<p class="space-top-two text-center">
-                                    <a class="btn btn-list" href="list.html">목록</a>
+                                    <a class="btn btn-list" href="list.jsp">목록</a>
                                 </p>
                                 
                                 <p class="space-top-two text-center">
-                                	<a href="noticeEdit.jsp?c=${n.code}">수정</a>
+                                	<a href="noticeEdit.jsp?c=${s.code}">수정</a>
                                 </p>
 									
                                 <%-- <p class="space-top-two text-center">    
@@ -117,7 +117,7 @@ pageContext.setAttribute("s", s);
                                 </p> --%>
                                 
                                 <p class="space-top-two text-center">    
-                                	<a id="btn-del-pop" href="viewDelProc.jsp?c=${n.code}">삭제</a>
+                                	<a id="btn-del-pop" href="viewDelProc.jsp?c=${s.code}">삭제</a>
                                 </p>
                                                  
                                 </div>

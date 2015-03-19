@@ -46,12 +46,12 @@
 	                    	
 	                    	<dl>
 		                        <dt class="detail-cell title newrow">제목</dt>
-		                        <dd class="detail-cell text-highlight"><input type="text" name="title" id="title" value="${fr.title}" /></dd>
+		                        <dd class="detail-cell text-highlight"><input type="text" name="title" id="title" value="${n.title}" /></dd>
 		                        
 		                        <dt class="hidden">내용</dt>
 		                        <dd class="content newrow">
 		                        	<textarea name="content" id="content" rows="10" cols="100" style="width: 690px; height: 400px; display: none;">
-		                        		${fr.contents}
+		                        		${n.contents}
 		                        	</textarea>
 		                        	<script type="text/javascript">
 					                    var oEditors = [];
@@ -87,7 +87,7 @@
                     	</fieldset>
                     
 	                    <p id="button-container" class="space-top text-center">
-	                   		<input type="hidden"  name="code" value="${fr.code}"/>
+	                   		<input type="hidden"  name="code" value="${n.code}"/>
 	                    	<input type="submit" onclick="submitContents(this)" value="수정" />
 	                    	<a href="list.jsp">취소</a>
 	                    </p>
