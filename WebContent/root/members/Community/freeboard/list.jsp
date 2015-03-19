@@ -1,14 +1,55 @@
-﻿<%@page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="com.htmtennis.prj.dao.mybatis.MyBFreeDao"%>
+<%@page import="com.htmtennis.prj.dao.mybatis.MyBatisMain"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@page import="com.htmtennis.prj.model.Free"%>
+<%@page import="java.util.List"%>
+<%@page import="com.htmtennis.prj.dao.FreeDao"%>
+<%@page import="com.htmtennis.prj.dao.jdbc.JdbcFreeDao"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="ui" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	int npage = 1;
+	String field = "TITLE";
+	String query = "";
+	
+	String _page = request.getParameter("p");
+	String _field = request.getParameter("f");
+	String _query = request.getParameter("q");
+	
+	if(_page != null && !_page.equals(""))
+		npage=Integer.parseInt(_page);
+	
+	if(_field != null && !_field.equals(""))                   
+		field =_field;
+		
+	if(_query != null && !_query.equals(""))
+		query =_query;
+					
+	SqlSession sqlSession = MyBatisMain.getSqlSessionFactory().openSession(true);
+	FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+	
+	List<Free> list = freeDao.getFrees(npage, query, field);
+	
+	pageContext.setAttribute("list", list);
+	pageContext.setAttribute("total", freeDao.getSize("", "TITLE"));
+%>
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
+
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/layout.css" rel="stylesheet" type="text/css" />-->
+
     <link href="../css/bind.css" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript" src="../js/modernizr.js"></script>
 </head>
 
@@ -98,7 +139,7 @@
                         </table>
                     </div>
 
-                    		<div> 
+                    <div> 
                          <!--<h3>현재페이지위치</h3>--> 
                          <p id="page-list">1/5 page</p> 
                      </div> 
@@ -115,7 +156,7 @@
                           
                          <ui:pager total="${total}"/> 
                          <p><a href="list.jsp">다음</a></p> 
-                     </div> 
+                         </div> 
 
 
                     <div id="main-search-form">
