@@ -8,7 +8,9 @@ import org.apache.ibatis.annotations.Select;
 import com.htmtennis.prj.model.Search;
 
 public interface SearchDao{
+	@Select("SELECT * FROM FREEBOARDS WHERE CODE = #{code}")
 	public Search getSearch(String code);
+	
 	public Search prevSearch(String curCode);
 	public Search nextSearch(String curCode);
 	

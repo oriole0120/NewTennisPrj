@@ -1,21 +1,16 @@
 ﻿
-<%@page import="com.htmtennis.prj.dao.NoticeDao"%>
-<%@page import="com.htmtennis.prj.dao.mybatis.MyBNoticeDao"%>
-<%@page import="com.htmtennis.prj.model.Notice"%>
-<%@page import="com.htmtennis.prj.dao.jdbc.JdbcNoticeDao"%>
+
+<%@page import="com.htmtennis.prj.dao.jdbc.JdbcScheduleDao"%>
+<%@page import="com.htmtennis.prj.model.Schedule"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
  
 <%	
-	String _code = request.getParameter("c");
-	//Notice n = new JdbcNoticeDao().getNotice(_code);
-	//pageContext.setAttribute("n", n);
-	NoticeDao noticeDao = new MyBNoticeDao();
-	Notice n = noticeDao.getNotice(_code);
+String _code = request.getParameter("c");
+Schedule s = new JdbcScheduleDao().getSchedule(_code);
+pageContext.setAttribute("s", s);
 	
-	pageContext.setAttribute("n", n);
-	pageContext.setAttribute("prev", noticeDao.prevNotice(_code));
-	pageContext.setAttribute("next", noticeDao.nextNotice(_code));		
+		
 %>
 
 
@@ -60,13 +55,13 @@
 
             <main id="main">
                 <div>
-                    <h2 id="main-title">   Notice </h2>
+                    <h2 id="main-title">   Schedule </h2>
 
                     <nav id="full-path">
                         <!--<h3>현재경로</h3>-->
                         <ol>
                             <li class="path">Home ></li>
-                            <li class="path">Notice ></li>
+                            <li class="path">Schedule ></li>
                             
                         </ol>
                     </nav>
@@ -76,16 +71,16 @@
                         <article class="detail space-top-l">
                             <dl>
                                 <dt class="detail-cell detail-cell-title detail-cell-break">제목</dt>
-                                <dd class="detail-cell text-highlight">${n.title}</dd>
+                                <dd class="detail-cell text-highlight">${s.title}</dd>
 
                                 <dt class="detail-cell detail-cell-title detail-cell-break">작성일</dt>
-                                <dd class="detail-cell">${n.regdate}</dd>
+                                <dd class="detail-cell">${s.regdate}</dd>
 
                                 <dt class="detail-cell detail-cell-title detail-cell-break">작성자</dt>
-                                <dd class="detail-cell detail-cell-half">${n.writer}</dd>
+                                <dd class="detail-cell detail-cell-half">${s.writer}</dd>
 
-                                <dt class="detail-cell detail-cell-title ">조회수</dt>
-                                <dd class="detail-cell detail-cell-half">${n.hit}</dd>
+                                <dt class="detail-cell detail-cell-title ">기념일</dt>
+                                <dd class="detail-cell detail-cell-half">${s.eventdate}</dd>
 
                                 <%-- <dt class="detail-cell detail-cell-title ">추천</dt>
                                 <dd class="detail-cell detail-cell-half">${n.thumb}</dd> --%>
@@ -95,28 +90,26 @@
 
                                 <dt class="hidden">내용</dt>
                                 <dd class="detail-cell-content detail-cell-break">
-                                   ${n.contents}
+                                   ${s.contents}
                                 </dd>
                             </dl>
-                            
                             <div id="space-top">
                                 <p class="space-top text-center">
-                                    <a class="btn btn-list" href="view.jsp?c=${prev.code}">이전글</a>
+                                    <a class="btn btn-list" href="view.html">이전글</a>
                                 </p>
 
                                 <p class="space-top text-center">
-                                    <a class="btn btn-list" href="view.jsp?c=${next.code}">다음글</a>                                                  			    
+                                    <a class="btn btn-list" href="view.html">다음글</a>                                                  			    
                                 </p>	
                             </div>
                             
                             <div id="space-top-two">          
                             	<p class="space-top-two text-center">
-                                    <a class="btn btn-list" href="list.jsp">목록</a>
-
+                                    <a class="btn btn-list" href="list.html">목록</a>
                                 </p>
                                 
                                 <p class="space-top-two text-center">
-                                	<a href="edit.jsp?c=${n.code}">수정</a>
+                                	<a href="noticeEdit.jsp?c=${n.code}">수정</a>
                                 </p>
 									
                                 <%-- <p class="space-top-two text-center">    
