@@ -1,14 +1,15 @@
-﻿<%@page import="com.htmtennis.prj.dao.mybatis.MyBSearchDao"%>
+﻿<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@page import="com.htmtennis.prj.dao.mybatis.MyBSearchDao"%>
 <%@page import="com.htmtennis.prj.dao.mybatis.MyBatisMain"%>
 <%@page import="com.htmtennis.prj.dao.SearchDao"%>
 <%@page import="com.htmtennis.prj.model.Search"%>
 <%@page import="java.util.List"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="ui" tagdir="/WEB-INF/tags" %>
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <c:set var="ctxName" value="${pageContext.request.servletContext.contextPath}" />
+<c:set var="ctxName" value="${pageContext.request.servletContext.contextPath}" />
 
 <%	String ctx = request.getContextPath();	%>
 <% 
@@ -28,15 +29,32 @@
 		nfield = _field;
 	
 	
-	SearchDao searchDao = new MyBSearchDao();
+	/* SearchDao searchDao = new MyBSearchDao(); */
+	SqlSession sqlSession = MyBatisMain.getSqlSessionFactory().openSession(true);
+	SearchDao searchDao = sqlSession.getMapper(SearchDao.class);
+	
 	List<Search> list = searchDao.getSearchs(npage, nquery, nfield);
 	
 	pageContext.setAttribute("list", list);
-	//pageContext.setAttribute("total", searchDao.getSize("%aa%", "TITLE"));
+	pageContext.setAttribute("total", searchDao.getSize("%aa%", "TITLE"));
 	
 %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
 
-       <body>
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/layout.css" rel="stylesheet" type="text/css" />-->
+
+    <link href="css/bind.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="../js/modernizr.js"></script>
+</head>
+
+<body>
     <!-- header -->
     <jsp:include page="../../inc/header.jsp"></jsp:include>
 
@@ -53,14 +71,14 @@
                     <!--  main content part  -->
                     <h2 id="main-title">my history </h2>
 
-                    <nav id="full-path">
-                        <!--<h3>현재경로</h3>-->
+                    <!-- <nav id="full-path">
+                        <h3>현재경로</h3>
                         <ol>
-                            <!--<li class="path">Home ></li>-->
-                            <li class="path">my history ></li>
-            
+                            <li class="path">Home ></li>
+                            <li class="path">Community ></li>
+                            <li class="path">MyHistory</li>
                         </ol>
-                    </nav>
+                    </nav> -->
 
                     <!-- <div id="write">
                         <p><a href="write.jsp">글쓰기</a></p>
@@ -115,7 +133,7 @@
                           
                          <ui:pager total="${total}"/> 
                          <p><a href="list.jsp">다음</a></p> 
-                         </div> 
+                     </div> 
 
 
                     <div id="main-search-form">

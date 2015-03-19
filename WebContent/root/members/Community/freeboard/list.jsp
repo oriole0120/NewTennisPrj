@@ -118,7 +118,7 @@
                     <div> 
                          <!--<h3>현재페이지위치</h3>--> 
                          <p id="page-list">1/5 page</p> 
-                     </div> 
+                    </div> 
  
  
                      <div> 
@@ -132,7 +132,7 @@
                           
                          <ui:pager total="${total}"/> 
                          <p><a href="list.jsp">다음</a></p> 
-                         </div> 
+                     </div> 
 
 
                     <div id="main-search-form">
