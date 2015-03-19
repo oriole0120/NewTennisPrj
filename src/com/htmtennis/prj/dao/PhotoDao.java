@@ -58,4 +58,6 @@ public interface PhotoDao {
 	@Select("SELECT ISNULL(MAX(CAST(CODE AS INT)), 0) Code  FROM PHOTOBOARDS")
 	public String lastCode();
 
+	@Update("UPDATE PHOTOBOAEDS SET CODE='${hit+1}' WHERE CODE='#{code}'")
+	public Photo sethit(String code);
 }

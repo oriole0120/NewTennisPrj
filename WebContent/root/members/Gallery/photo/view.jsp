@@ -12,7 +12,9 @@
 
 	PhotoDao photoDao = new MyBPhotoDao();
 	
+	photoDao.sethit(_code);
 	Photo ph = photoDao.getPhoto(_code);
+
 	pageContext.setAttribute("ph", ph);
 	
 %>

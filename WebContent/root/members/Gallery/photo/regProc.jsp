@@ -48,6 +48,7 @@
 	PhotoDao photoDao = new MyBPhotoDao();
 	photoDao.insert(photo);
 
+
 	/* if (req.getFile("file") != null) {
 
 		String photoCode = photoDao.lastCode();

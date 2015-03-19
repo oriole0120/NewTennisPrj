@@ -33,8 +33,8 @@ FROM     FreeBoards fr INNER JOIN
                NoticeBoards noti ON FreeBoards.Code = NoticeBoards.Code INNER JOIN
                PhotoBoards ph ON FreeBoards.Code = PhotoBoards.Code
 
+update photoboards set hit = '(10+1)' where code='1'
 
-               
 			
 
 

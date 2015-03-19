@@ -97,6 +97,13 @@ public class MyBPhotoDao implements PhotoDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int sethit(Photo photo) {
+		settingSession();
+		photoDao.sethit(photo);
+		return 0;
+	}
 	
 	
 
