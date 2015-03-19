@@ -1,4 +1,5 @@
 
+<%@page import="com.htmtennis.prj.dao.mybatis.MyBNoticeDao"%>
 <%@page import="com.htmtennis.prj.dao.jdbc.jdbcNoticeFileDao"%>
 <%@page import="com.htmtennis.prj.dao.NoticeFileDao"%>
 <%@page import="com.htmtennis.prj.model.NoticeFile"%>
@@ -15,52 +16,24 @@
 	pageEncoding="UTF-8"%>
 	
 <%
-	ServletContext ctx = request.getServletContext();
-	String path = ctx.getRealPath("/root/members/Notice/upload");
-	out.print(path + "<br />");
-
-	MultipartRequest req = new MultipartRequest(request
-							, path
-							, 1024 * 1024 * 10
-							, "UTF-8"
-							, new DefaultFileRenamePolicy());
-
-	String title = req.getParameter("title");
-	String noticename = req.getFilesystemName("file");
-	String content = req.getParameter("content");
 	
-	/* out.print(path + "<br />");
-	out.print(path + "<br />");
-	out.print(path + "<br />"); */
-
+	String title = request.getParameter("title");
+	String content = request.getParameter("content");
+	
+	
 	Notice n = new Notice();
 	
 	n.setTitle(title);
 	n.setWriter("admin");
 	n.setContents(content);
 	
-	/* if(filename)
-		free.setFileName();  */
-
-	/* SqlSession sqlSession = MyBatisMain.getSqlSessionFactory().openSession(true); */
-		
 	
-	NoticeDao noticeDao = new JdbcNoticeDao();
+		
+	NoticeDao noticeDao = new MyBNoticeDao();
+	//NoticeDao noticeDao = new JdbcNoticeDao();
 	noticeDao.insert(n);
 
-	 if (req.getFile("file") != null) {
-
-		 String noticecode = noticeDao.lastCode();
-		 
-		 NoticeFile noticeFile = new NoticeFile();
-		 
-		    noticeFile.setNoticename(noticename);
-			noticeFile.setNoticecode(noticecode);
-			
-			NoticeFileDao fileDao = new jdbcNoticeFileDao();
-			fileDao.insert(noticeFile);	
-		 
-	}
+	
 	
 	
 	

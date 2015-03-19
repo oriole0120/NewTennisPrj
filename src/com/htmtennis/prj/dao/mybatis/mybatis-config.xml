@@ -13,6 +13,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 		<typeAlias alias="Free" type="com.htmtennis.prj.model.Free" />
 		<typeAlias alias="Information" type="com.htmtennis.prj.model.Information" />
+		
+		<typeAlias alias="Notice" type="com.htmtennis.prj.model.Notice" />
+		<!-- <typeAlias alias="Schedule" type="com.htmtennis.prj.model.Schedule" />  -->
+		
+		
+		
 
 	</typeAliases>
 
@@ -38,6 +44,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 		<mapper class="com.htmtennis.prj.dao.FreeDao"/>
 		<mapper class="com.htmtennis.prj.dao.InformationDao"/>
+		
+		<mapper class="com.htmtennis.prj.dao.NoticeDao"/>
+		<!-- <mapper class="com.htmtennis.prj.dao.ScheduleDao"/>  -->
+		
+		
+		
 
 	</mappers>
 </configuration>  
