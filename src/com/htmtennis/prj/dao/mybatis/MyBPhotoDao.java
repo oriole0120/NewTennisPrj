@@ -28,14 +28,14 @@ public class MyBPhotoDao implements PhotoDao {
 
 	@Override
 	public Photo prevPhoto(String curCode) {
-		// TODO Auto-generated method stub
-		return null;
+		settingSession();
+		return prevPhoto(curCode);
 	}
 
 	@Override
 	public Photo nextPhoto(String curCode) {
-		// TODO Auto-generated method stub
-		return null;
+		settingSession();
+		return nextPhoto(curCode);
 	}
 
 	@Override
@@ -96,6 +96,14 @@ public class MyBPhotoDao implements PhotoDao {
 	public String lastCode() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int sethit(String code) {
+		settingSession();
+		photoDao.sethit(code);		
+		
+		return 0;
 	}
 	
 	

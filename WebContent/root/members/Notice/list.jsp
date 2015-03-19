@@ -1,4 +1,7 @@
-﻿<%@page import="com.htmtennis.prj.model.Notice"%>
+﻿<%@page import="com.htmtennis.prj.dao.mybatis.MyBNoticeDao"%>
+<%@page import="com.htmtennis.prj.dao.mybatis.MyBatisMain"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+<%@page import="com.htmtennis.prj.model.Notice"%>
 <%@page import="com.htmtennis.prj.dao.jdbc.JdbcNoticeDao"%>
 <%@page import="com.htmtennis.prj.dao.NoticeDao"%>
  
@@ -27,11 +30,15 @@
 	if (_query != null && !_query.equals(""))
 		query = _query;
 
-	NoticeDao noticeDao = new JdbcNoticeDao();
+	//NoticeDao noticeDao = new JdbcNoticeDao();
+	
+	/* SqlSession sqlSession = MyBatisMain.getSqlSessionFactory().openSession(true);
+	NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class); */
+	NoticeDao noticeDao = new MyBNoticeDao();
 	List<Notice> list = noticeDao.getNotices(npage, query, field);
 
 	pageContext.setAttribute("list", list);
-	pageContext.setAttribute("total", noticeDao.getSize(""));
+	pageContext.setAttribute("total", noticeDao.getSize("","TITLE"));
 %>
 
 
@@ -124,18 +131,27 @@
                         </table>
                     </div>
 
-                    <div>
-                        <!--<h3>현재페이지위치</h3>-->
-                       <p><a class="page" href="list.html">이전</a></p>
-                        <ul>
-                            <li class="page">1</li>
-                            <li class="page">2</li>
-                            <li class="page">3</li>
-                            <li class="page">4</li>
-                            <li class="page">5</li>
-                        </ul>
-                        <p><a href="list.html">다음</a></p>
-                    </div>
+                   
+                   <div> 
+                         <!--<h3>현재페이지위치</h3>--> 
+                         <p id="page-list">1/5 page</p> 
+                     </div> 
+ 
+ 
+                     <div> 
+                         <!--<h3>페이지선택목록</h3>--> 
+                         <p><a class="page" href="list.jsp">이전</a></p> 
+                          
+                         <ul class="page" >
+                         
+                          
+                          
+                          
+                         <ui:pager total="${total}"/> 
+                         <p><a href="list.jsp">다음</a></p> 
+                         </div> 
+                   
+                   
 
                     <div id="main-search-form">
                         <!--<h3>영상게시물 검색폼</h3>-->

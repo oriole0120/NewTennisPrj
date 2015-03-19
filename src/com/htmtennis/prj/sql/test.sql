@@ -23,5 +23,34 @@ INSERT INTO PHOTOBOARDS(CODE, WRITER, REGDATE, TITLE, CONTENTS, HIT, THUMB, AUTH
 	VALUES(#{code}, #{writer}, GETDATE(), #{title}, #{contents}, 0, 0, 'B')
 	
 UPDATE PHOTOBOARDS SET code = #{title}, #{contents} WHERE CODE='19';
+
+select AA.*, BB.* from FreeBoards as AA inner join PhotoBoards as BB on AA.writer = BB.writer; 
+
+
+SELECT  fr.*, info.*, noti.*, ph.*
+FROM     FreeBoards fr INNER JOIN
+               InformationBoards info ON FreeBoards.Code = InformationBoards.Code INNER JOIN
+               NoticeBoards noti ON FreeBoards.Code = NoticeBoards.Code INNER JOIN
+               PhotoBoards ph ON FreeBoards.Code = PhotoBoards.Code
+
+update photoboards set hit = '(10+1)' where code='1'
+
+			
+
+
+create view history as 
+			select code, writer, regdate, title, contents, hit from freeboards where writer like '%aa%'
+			union all
+			select code, writer, regdate, title, contents, hit from informationboards where title like '%aa%'
+			union all
+			select code, writer, regdate, title, contents, hit from photoboards where title like '%aa%'
+			union all
+			select code, writer, regdate, title, contents, hit from videoboards where title like '%aa%'
+			union all
+			select code, writer, regdate, title, contents, hit from noticeboards where title like '%aa%'
+		
+
+select * from histroy order by regdate desc
+
 	
 	

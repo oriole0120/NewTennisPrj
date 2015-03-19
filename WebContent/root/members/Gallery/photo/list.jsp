@@ -38,7 +38,7 @@
 %>
 
 
-<main id="main">
+				<main id="main">
                 <!--  main content part  -->
                 <div id="main-title-bar">
                     <p> >>Photo </p>

@@ -43,7 +43,7 @@ public class PhotoController implements Controller {
 			SqlSession sqlSession = MyBatisMain.getSqlSessionFactory().openSession(true);
 			PhotoDao photoDao = sqlSession.getMapper(PhotoDao.class); 
 		
-			//PhotoDao photoDao = new MyBPhotoDao();
+	//		PhotoDao photoDao = new MyBPhotoDao();
 			List<Photo> list = photoDao.getPhotos(npage, nquery, nfield);
 			
 			ModelAndView mv = new ModelAndView("list.jsp");

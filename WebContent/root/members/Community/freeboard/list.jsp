@@ -109,31 +109,7 @@
 									</tr>	
 								</c:forEach>
 																
-                                <!-- <tr>
-                                    <td class="free-board-cell num"><a class="board-list-item-text">9</a></td>
-                                    <td class="free-board-cell title"><a class="board-list-item-text" href="view.html">테니스 레슨시작했습니다!</a></td>
-                                    <td class="free-board-cell writer"><a class="board-list-item-text" href="">페더러짱짱</a></td>
-                                    <td class="free-board-cell date"><a class="board-list-item-text">2015-01-19</a></td>
-                                    <td class="free-board-cell hit"><a class="board-list-item-text">17</a></td>
-                                    <td class="free-board-cell recommend"><a class="board-list-item-text">52</a></td>
-                                </tr>
-                                
-                                <tr>
-                                    <td class="free-board-cell num"><a class="board-list-item-text">2</a></td>
-                                    <td class="free-board-cell title"><a class="board-list-item-text" href="view.html">테니스 엄청 힘든운동이네요ㅎㅎ</a></td>
-                                    <td class="free-board-cell writer"><a class="board-list-item-text" href="">초보자</a></td>
-                                    <td class="free-board-cell date"><a class="board-list-item-text">2015-01-17</a></td>
-                                    <td class="free-board-cell hit"><a class="board-list-item-text">24</a></td>
-                                    <td class="free-board-cell recommend"><a class="board-list-item-text">11</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="free-board-cell num"><a class="board-list-item-text">1</a></td>
-                                    <td class="free-board-cell title"><a class="board-list-item-text" href="view.html">즐거운 모임이었어요^^</a></td>
-                                    <td class="free-board-cell writer"><a class="board-list-item-text" href="">조코비치</a></td>
-                                    <td class="free-board-cell date"><a class="board-list-item-text">2015-01-17</a></td>
-                                    <td class="free-board-cell hit"><a class="board-list-item-text">51</a></td>
-                                    <td class="free-board-cell recommend"><a class="board-list-item-text">33</a></td>
-                                </tr> -->
+                              
 
                             </tbody>
                         </table>
@@ -142,7 +118,7 @@
                     <div> 
                          <!--<h3>현재페이지위치</h3>--> 
                          <p id="page-list">1/5 page</p> 
-                     </div> 
+                    </div> 
  
  
                      <div> 
@@ -156,24 +132,13 @@
                           
                          <ui:pager total="${total}"/> 
                          <p><a href="list.jsp">다음</a></p> 
-                         </div> 
+                     </div> 
 
 
                     <div id="main-search-form">
                         <!--<h3>영상게시물 검색폼</h3>-->
                         <form>
-                            <!-- <fieldset>
-                                <legend>영상검색필드</legend>
-                                <select>
-                                    <option>작성자</option>
-                                    <option>제목</option>
-                                    <option>본문</option>
-                                </select>
-
-                                <input class="search" type="text" name="query" />
-                                <input class="search" type="submit" value="검색" />
-
-                            </fieldset> -->
+                        
                             
                             <fieldset>
                                                             
