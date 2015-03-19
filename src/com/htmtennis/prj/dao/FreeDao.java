@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
 import com.htmtennis.prj.model.Free;
+import com.htmtennis.prj.model.Photo;
 
 public interface FreeDao {
 	@Select("SELECT * FROM FREEBOARDS WHERE CODE = #{code}")
@@ -58,5 +59,11 @@ public interface FreeDao {
 	
 	@Select("SELECT ISNULL(MAX(CAST(CODE AS INT)), 0) Code  FROM FREEBOARDS")
 	public String lastCode();
+	
+	@Update("UPDATE FREEBOARDS SET CODE='${hit+1}' WHERE CODE='#{code}'")
+	public Free sethit(String code);
+	
+	@Update("UPDATE FREEBOARDS SET CODE='${hit+1}' WHERE CODE='#{code}'")
+	public Free setThumb(String code);
 
 }
