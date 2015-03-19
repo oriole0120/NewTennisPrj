@@ -9,6 +9,8 @@ public class Search {
 	private String title;
 	private String contents;
 	private int hit;
+	
+	
 	public String getCode() {
 		return code;
 	}

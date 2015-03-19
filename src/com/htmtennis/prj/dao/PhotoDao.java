@@ -12,6 +12,15 @@ import org.apache.ibatis.annotations.Update;
 import com.htmtennis.prj.model.Photo;
 
 public interface PhotoDao {
+	
+	
+	@SelectKey( before = true, 
+			keyColumn = "code", 
+			statement = "UPDATE PHOTOBOARDS SET CODE='${++hit}' "
+					+ "		WHERE CODE='#{code}'",
+			resultType = java.lang.String.class, keyProperty = "hit" ) 
+	
+	
 	@Select("SELECT * FROM PHOTOBOARDS WHERE CODE = #{code}")
 	public Photo getPhoto(String code);
 	
@@ -58,6 +67,6 @@ public interface PhotoDao {
 	@Select("SELECT ISNULL(MAX(CAST(CODE AS INT)), 0) Code  FROM PHOTOBOARDS")
 	public String lastCode();
 
-	@Update("UPDATE PHOTOBOAEDS SET CODE='${hit+1}' WHERE CODE='#{code}'")
-	public Photo sethit(String code);
+	@Update("UPDATE PHOTOBOARDS SET CODE='${33}' WHERE CODE='#{code}'")
+	public int sethit(String code);
 }

@@ -12,7 +12,7 @@
    
 	Photo ph = new Photo();
    	PhotoDao photoDao = new MyBPhotoDao();
-	//photoDao.delete(code);
+	photoDao.delete(code);
    
-   response.sendRedirect("view.jsp?c=${ph.code}");
+   response.sendRedirect("list.jsp");
 %>
