@@ -7,10 +7,43 @@
     <link href="css/bind.css" rel="stylesheet" type="text/css" />
     <!--<script type="text/javascript" src="../js/modernizr.js"></script>-->
     <script type="text/javascript" src="../../editor/js/HuskyEZCreator.js" charset="utf8"></script>
+   
+   
+   <!-- //// J커리 달력창/// -->
+   <!--  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  }); -->
+  
+ 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+      showOn: "button",
+      buttonImage: "img/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date"
+    });
+  });
+  </script>
+ 
+ 
+  
+  </script>
 
 </head>
 
 <body>
+
     <!-- header -->
     <jsp:include page="../../inc/header.jsp"></jsp:include>
 
@@ -22,17 +55,18 @@
 
 
             <main id="main">
-                <h2 id="main-title-write">   글 작성 </h2>
+                <h2 id="main-title-write">   Schedule 작성 </h2>
 
-                <form id="text-area" action="regProc.jsp" method="post">
+                <form id="text-area" action="regProc.jsp" method="post" enctype="multipart/form-data">
                     	<fieldset>
 	                    	<legend class="hidden">본문입력필드</legend>
 	                    	
 	                    	<dl>
-		                        <dt class="detail-cell-commu title-free newrow">제목</dt>
-		                        <dd class="detail-cell-commu text-highlight"><input type="text" name="title" /></dd>
+		                        <dt class="detail-cell-commu title-free newrow"><p>일자<input type="text" id="datepicker"></p></dt>
+		                        <!-- <dd class="detail-cell-commu text-highlight"><input type="text" name="title" /></dd> -->
 		                        
-		                        <dt class="hidden">내용</dt>
+		                        <!-- class="hidden" -->
+		                        <dt class="detail-cell-commu title-free newrow">일정</dt>
 		                        <dd class="content newrow">
 		                        	<textarea name="content" id="content" rows="10" cols="100" style="width: 690px; height: 400px; display:none;">
 		                        		☆입력☆
@@ -97,7 +131,7 @@
                     	</fieldset>
                     
 	                    <p id="button-container" class="space-top text-center">
-	                    	<input type = "submit" value="등록" onclick="submitContents(this)"/>
+	                    	<input type = "submit" value="등록" />
 	                    	<a href="list.jsp">취소</a>
 	                    </p>
           
