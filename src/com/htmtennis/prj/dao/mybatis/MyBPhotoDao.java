@@ -99,10 +99,16 @@ public class MyBPhotoDao implements PhotoDao {
 	}
 
 	@Override
-	public int sethit(String code) {
+	public int inquiry(String code) {
 		settingSession();
-		photoDao.sethit(code);		
-		
+		photoDao.inquiry(code);			
+		return 0;
+	}
+	
+	@Override
+	public int recommend(String code) {
+		settingSession();
+		photoDao.recommend(code);
 		return 0;
 	}
 	

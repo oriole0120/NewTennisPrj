@@ -11,7 +11,6 @@
 	String _code = request.getParameter("c");
 	
 	PhotoDao photoDao = new MyBPhotoDao();
-		
 	Photo ph = photoDao.getPhoto(_code);
 	pageContext.setAttribute("ph", ph);
 %>

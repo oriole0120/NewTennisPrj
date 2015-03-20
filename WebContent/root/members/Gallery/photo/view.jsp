@@ -11,8 +11,7 @@
  	String _code = request.getParameter("c");
 
 	PhotoDao photoDao = new MyBPhotoDao();
-	photoDao.sethit(_code);
-	
+	photoDao.inquiry(_code);
 	Photo ph = photoDao.getPhoto(_code);
 
 	pageContext.setAttribute("ph", ph);
@@ -31,9 +30,11 @@
     	function init(){
     		var btnDel=document.getElementById("btn-del");
     		var btnThumb=document.getElementById("btn-thumb");
+    		
     		btnDel.onclick=btnDelClick;
     		btnThumb.onclick=btnThumbClick;
     	}
+    	
     	function btnDelClick(){
     		if(!confirm( '삭제 하시겠습니까?' )){
     			return false;
@@ -130,14 +131,16 @@
 		                        <dt class="detail-cell title">조회수</dt>
 		                        <dd class="detail-cell half-cell">${ph.hit}</dd>
 		                        <dt class="detail-cell title newrow">첨부파일</dt>
-		                        <dd class="detail-cell"></dd>
+		                        <dd class="detail-cell half-cell"></dd>
+		                        <dt class="detail-cell title">추천수</dt>
+		                        <dd class="detail-cell half-cell">${ph.thumb}</dd>
 		                        <dt class="hidden">내용</dt>
 		                        <dd class="content newrow">${ph.contents}</dd>
                             </dl>
 
                             <p class="space-top text-center "> <!-- btn btn-list -->
-                            	<a id="btn-thumb" href="">추천</a>
-                                <a id="btn-list" href="list.jsp">목록</a>
+                            	<a id="btn-list" href="list.jsp">목록</a>
+                            	<a id="btn-thumb" href="thumbProc.jsp?c=${ph.code}">추천</a>
                                 <a id="btn-edit" href="edit.jsp?c=${ph.code}">수정</a>
                                 <a id="btn-del" href="delProc.jsp?c=${ph.code}">삭제</a>
                             </p>

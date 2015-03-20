@@ -33,7 +33,7 @@ FROM     FreeBoards fr INNER JOIN
                NoticeBoards noti ON FreeBoards.Code = NoticeBoards.Code INNER JOIN
                PhotoBoards ph ON FreeBoards.Code = PhotoBoards.Code
 
-update photoboards set hit = '(10+1)' where code='1'
+update photoboards set hit = 'hit+1' where code='1'
 
 			
 
@@ -52,5 +52,12 @@ create view history as
 
 select * from histroy order by regdate desc
 
+select * from photoboards where code = '1'
+
+UPDATE PHOTOBOARDS SET HIT=(CAST(HIT AS INT))+1 WHERE CODE='1'
 	
-	
+
+UPDATE PHOTOBOARDS SET THUMB=(CAST(THUMB AS INT))+1 WHERE CODE='1'
+
+
+

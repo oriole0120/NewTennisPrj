@@ -130,4 +130,17 @@ public class MyBFreeDao implements FreeDao{
 		
 	}
 	
+	@Override
+	public Free inquiry(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Free recommend(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

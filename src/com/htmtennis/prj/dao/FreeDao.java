@@ -61,9 +61,9 @@ public interface FreeDao {
 	public String lastCode();
 	
 	@Update("UPDATE FREEBOARDS SET CODE='${hit+1}' WHERE CODE='#{code}'")
-	public Free sethit(String code);
+	public Free inquiry(String code);
 	
 	@Update("UPDATE FREEBOARDS SET CODE='${hit+1}' WHERE CODE='#{code}'")
-	public Free setThumb(String code);
+	public Free recommend(String code);
 
 }
