@@ -41,7 +41,7 @@
 	                </div>
         
                     
-                    <form id="text-area" action="regProc.jsp" method="post" >
+                    <form id="text-area" action="regProc.jsp" method="post" enctype="multipart/form-data" >
                     	<fieldset>
 	                    	<legend class="hidden">본문입력필드</legend>
 	                    	

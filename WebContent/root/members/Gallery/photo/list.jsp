@@ -64,7 +64,7 @@
                             	<!-- 글개수만큼 리스트를 갱신 -->
                             	
 	                            <c:forEach begin="0" end="3" var="j" >
-	                           
+	                           	<c:if test="${not empty list[4*i+j]}">
 	                            	<td class="table-cell">
 	                                    <table>
 	                                        <tbody>
@@ -80,6 +80,7 @@
 	                                        </tbody>
 	                                    </table>	
 	                                </td>
+	                               </c:if>
 	                            </c:forEach>
                             </tr>
                             </c:forEach>                            
