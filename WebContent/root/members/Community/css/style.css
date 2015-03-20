@@ -18,7 +18,7 @@
     font-weight: 800;
     color: #000000;
     margin-top:10px;
-    padding: 50px 0px 0px 300px;
+    padding-left: 300px;
  }
 
 #main-title-write
@@ -34,7 +34,7 @@
 #full-path
 {
     float:left;
-    margin-top:50px;
+    margin-top:10px;
     padding-left: 15px;
     font-weight: 700;
 }
@@ -232,7 +232,7 @@ a.page:first-child
 
 #write
 {
-    margin-top:110px;
+    margin-top:20px;
     margin-left:700px;
 }
 

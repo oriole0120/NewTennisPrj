@@ -40,7 +40,7 @@
 
             <div class="header-slide-img">
                 <!--  image slide part  -->
-                <img id="slide-img" src="${ctxName}/root/images/slide-img01.png" />
+                <img id="slide-img" src="${ctxName}/root/images/16.jpg" />
             </div>
         </div>
     </header>

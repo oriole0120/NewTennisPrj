@@ -43,7 +43,7 @@
 
 #header .content-wrapper
 {
-    border-bottom: 1px dotted #ff0000;
+   /*  border-bottom: 1px dotted #ff0000; */
     width:1000px;
     margin-left:auto;
     margin-right:auto;
@@ -61,7 +61,7 @@
 
 #body .content-wrapper
 {
-    background: #413407;
+    /* background: #413407; */
     
     width: 1000px;
     position: relative;

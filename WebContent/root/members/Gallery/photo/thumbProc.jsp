@@ -10,7 +10,6 @@
 <% 
 	String code = request.getParameter("c");
    
-	Photo ph = new Photo();
    	PhotoDao photoDao = new MyBPhotoDao();
 	photoDao.recommend(code);
    
