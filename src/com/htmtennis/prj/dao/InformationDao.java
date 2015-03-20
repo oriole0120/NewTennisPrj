@@ -57,5 +57,11 @@ public interface InformationDao {
 	
 	@Select("SELECT ISNULL(MAX(CAST(CODE AS INT)), 0) Code  FROM INFORMATIONBOARDS")
 	public String lastCode();
+	
+	@Update("UPDATE INFORMATIONBOARDS SET HIT=(CAST(HIT AS INT))+1 WHERE CODE=#{code}")
+	public int inquiry(String code);
+	
+	@Update("UPDATE INFORMATIONBOARDS SET THUMB=(CAST(THUMB AS INT))+1 WHERE CODE=#{code}")
+	public int recommend(String code);
 
 }

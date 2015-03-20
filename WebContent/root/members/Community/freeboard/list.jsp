@@ -35,6 +35,8 @@
 	
 	pageContext.setAttribute("list", list);
 	pageContext.setAttribute("total", freeDao.getSize("", "TITLE"));
+	
+	
 %>
 
 

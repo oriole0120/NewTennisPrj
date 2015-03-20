@@ -17,6 +17,7 @@
 	FreeDao freeDao = sqlSession.getMapper(FreeDao.class); */
 	
 	FreeDao freeDao = new MyBFreeDao();
+	freeDao.inquiry(_code);
 	Free fr = freeDao.getFree(_code);
 	
 	pageContext.setAttribute("fr", fr);
@@ -38,7 +39,14 @@
     <script>
     	function init(){
     		var btnDelPop=document.getElementById("btn-del-pop");
+    		var btnThumb=document.getElementById("btn-thumb");
     		btnDelPop.onclick=btnDelPopClick;
+    		btnThumb.onclick=btnThumbClick;
+    	}
+    	function btnThumbClick(){
+    		if(!confirm( '추천 하시겠습니까?' )){
+    			return false;
+    		}	
     	}
     	function btnDelPopClick(){
     		if(!confirm( '삭제 하시겠습니까?' )){
@@ -118,13 +126,17 @@
                                 </p>
                                 
                                 <p class="space-top-two text-center">
+                                	<a id="btn-thumb" href="thumbProc.jsp?c=${fr.code}">추천</a>
+                                </p>
+                                
+                                <p class="space-top-two text-center">
                                 	<a href="edit.jsp?c=${fr.code}">수정</a>
                                 </p>
 									
                                 <%-- <p class="space-top-two text-center">    
                                 	<a href="viewDelProc.jsp?c=${fr.code}">삭제</a>
                                 </p> --%>
-                                
+                                                                                                
                                 <p class="space-top-two text-center">    
                                 	<a id="btn-del-pop" href="viewDelProc.jsp?c=${fr.code}">삭제</a>
                                 </p>

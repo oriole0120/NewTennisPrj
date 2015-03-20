@@ -124,4 +124,26 @@ public class MyBInformationDao implements InformationDao {
 		
 	}
 
+	@Override
+	public int inquiry(String code) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+		
+		informationDao.inquiry(code);
+		
+		return 0;
+	}
+
+	@Override
+	public int recommend(String code) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		InformationDao informationDao = sqlSession.getMapper(InformationDao.class);
+		
+		informationDao.recommend(code);
+		
+		return 0;
+	}
+
 }
