@@ -54,108 +54,92 @@
     <link href="css/default.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../js/modernizr.js"></script>
     <script src="../../js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<link rel="stylesheet"
- 	href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+   
     <script type="text/javascript">
 
-    $(function () {
+	var xmlHttp = false;
 
-        $(document).tooltip();
+	try {
+		xmlHttp = new XMLHttpRequest();
+	} catch ( trymicrosoft ) {
+		try {
+			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (othermicrosoft) {
+			try {
+				xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (failed) {
+				xmlHttp = false;
+			}  
+		}
+	}
 
-    });
+	if (!xmlHttp) {
+		alert("Error initializing XMLHttpRequest!");
+	}	
+		
+	function checkID() {
+	    var id = document.getElementById("id");
+	    var id = id.value; 
+	    
+	    // TODO 아이디 유효성 체크
+	    
+	    var queryString = "id=" + id;
+	    
+	    var url = "ajaxIdCheck.jsp";
+	    
+	    xmlHttp.open("POST", url, true);
+	    xmlHttp.onreadystatechange = updatePage;
+	    xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");    
+	    xmlHttp.send(queryString);
+	}
 
-    </script>
-    
-    <script>
-	/* function init(){
-		var count=0;
-    		var btnDelPop=document.querySelectorAll(".check");
-    		for(var i=0;i<btnDelPop.length;i++){
-    			if([i].value!=null && btnDelPop[i].value!=""){
-    				count++;
-    			}
-    		}
-    		if(count<7){
-    			$("#submit").submit();
-    		}
-    		else
-    		btnDelPop.onclick=btnDelPopClick;
-    	}
+	function updatePage() {
+	    if (xmlHttp.readyState == 4) {
+	        showIDCheckMsg();
+	    }
+	}
+
+	function showIDCheckMsg() {
+	    
+	    var response = xmlHttp.responseText;
+	    var str = response.split("|");
+	    var msg = document.getElementById("idChkMsg");
+
+	    if (str[0] == 0) {
+		    idOKMsg (str[1]);
+		} else {
+		    idNotOKMsg (str[1]);
+		}
+	}
+
+	var textNode;
+
+	function idNotOKMsg (id) {
+		var msg = document.getElementById('idChkMsg');
+		if (textNode) msg.removeChild(textNode);
+		var str = id + " 는 이미 사용자가 있습니다. 다른 ID를 사용하세요.";
+		textNode = document.createTextNode(str);
+		msg.appendChild(textNode);
+		msg.style.background = "#FCBFC0";
+	}
 	
-    	function btnDelPopClick(){
-    		if(!confirm( '다시입력해' )){
-    			return false;
-    		}	
-    	}
-    	window.onload=init; */
-    	
-    	window.onload = function(){
-    		  var 
-    		 mid = document.querySelector('#ID'), 
-    		 pwd =document.querySelector('#PWD'),
-    		 //rePw=document.querySelector("#rePw"),
-    		 Name = document.querySelector('#Name') ,
-    		 Email = document.querySelector('#Email') ,
-    		 Phone = document.querySelector('#Ph') ,
-    		 StudentNum =document.querySelector('#stNum');
-    		
-    		 
-    		 
-    		 var msg=document.querySelector("#msg");
-    		 var msgtext= document.querySelector("#ID");
-    		 var btncheck = document.querySelector("#main-join-button");
-    		 btncheck.onclick = function(){
-    		  if(msgtext.value==""){
-    		   alert("입력된 값이 없습니다.");
-    		  }else{
-    		   var msgValue="중복 되지 않는 아이디 입니다."; 
-    		   var oReq = new XMLHttpRequest();
-    		     if (oReq) {
-    		     
-    		      oReq.onreadystatechange = function(){
-    		       if(oReq.readyState == 4)
-    		       {
-    		       
-    		        var data = eval(oReq.responseText);
-    		        for(var i=0;i<data.length;i++){
-    		        if(msgtext.value==data[i].mid){
-    		         msgValue="중복된 ID입니다.";
-    		         msgtext.value=null;
-    		        }
-    		        }
-    		        msg.innerText=msgValue;
-    		          
-    		       }
-    		       
-    		      }
-    		      
-    		      
-    		        oReq.open("GET", "checkId.jsp", true);
-    		        oReq.send();
-    		      
-    		      /*   console.log(oReq.statusText);  */
-    		     } 
-    		  
-    		 }
-    		 }
-    		 
-    		 
-    		 var re_upw = /^[a-zA-Z0-9]{6,18}$/; // 비밀번호 검사식
-    		 
-    		 rePw.onblur=function(){
-    			 var firstpw = firstPw.value;
-    			 var repw = rePw.value;
-    			 if(firstpw!=repw){
-    			  alert("두개의 비밀번호가 다릅니다.")
-    			  rePw.value=null;
-    			  }
-    			 if(re_upw.test($("#pwd").val()) != true){
-    			  alert("잘못된 비밀번호 형식입니다.");
-    			 }
-    	</script>
+	function idOKMsg (id) {
+		var msg = document.getElementById('idChkMsg');
+		if (textNode) msg.removeChild(textNode);
+		var str = id + " 는 사용이 가능한 ID입니다.";
+		textNode = document.createTextNode(str);
+		msg.appendChild(textNode);
+		msg.style.background = "#BFCDFC";
+	}
+	
+</script>
+</head>
+<body>
+<form id="signform" action="write.jsp" method="post">
+
+</form>
+</body>
+</html>
 </head>
 
 <body>
@@ -185,14 +169,25 @@
                     <div id="aa">
                         
                         <div id="aa1">
-                        <form action="joinProc.jsp" method="post" id="submit">
+                        <!-- <form action="joinProc.jsp" method="post" id="submit"> -->
+                        <form id="signform" action="write.jsp" method="post">
+                        
+                        <p>
+							ID <input type="text" name="id" id="id"/>
+								<input type="button" value="ID중복체크" onclick="checkID()" />
+							</p>
+							<p>
+							<span id="idChkMsg"></span>
+							</p>
                             <table border="1">
                             
-                                <tr>
+                            
+                            
+                                <%-- <tr>
                                     <td width=130>아이디</td>
                                     <td colspan=3>
-                                   <%--  <c:forEach var="jn" items="${list}">
-                                    </c:forEach> --%>
+                                    <c:forEach var="jn" items="${list}">
+                                    </c:forEach>
                                         <!-- <input class="check" type="text" name="mid" id="ID" value=""/> -->
                                     	<input class="main-join-text info" id="ID" type="text" name="mid"
         								title="아이디는 5~16자 미만으로 입력 해 주세요.(특수문자,한글 불가)" onclick="msg.innerText=''"/>
@@ -205,20 +200,19 @@
         									<span id="msg" style="color: red;"></span>
        									</div>
                                     </td>
-                                </tr>
+                                </tr> --%>
  							
                                 <tr>
                                     <td align="center">비밀번호</td>
                                     <td colspan=3>
-                                        <input class="check" type="password" name="pwd" id="pwd" 
-										title="비밀번호는 문자, 숫자, 조합으로 8~16자리로 입력해주세요." />
+                                        <input class="check" type="password" name="pwd" id="PWD" value="" />
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td align="center">비밀번호 확인</td>
                                     <td colspan=3>
-                                        <input class="check" type="password" name="pwr" id="rpwd" value="" />
+                                        <input class="check" type="password" name="pwr" id="PWDS" value="" />
                                     </td>
                                 </tr>
 
