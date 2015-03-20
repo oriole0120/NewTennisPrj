@@ -400,16 +400,16 @@ public class JdbcFreeDao implements FreeDao {
 
 
 	@Override
-	public Free inquiry(String code) {
+	public int inquiry(String code) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 
 	@Override
-	public Free recommend(String code) {
+	public int recommend(String code) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 	
 	

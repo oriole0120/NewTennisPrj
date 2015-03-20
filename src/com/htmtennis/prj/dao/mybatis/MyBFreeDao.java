@@ -131,15 +131,25 @@ public class MyBFreeDao implements FreeDao{
 	}
 	
 	@Override
-	public Free inquiry(String code) {
-		// TODO Auto-generated method stub
-		return null;
+	public int inquiry(String code) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+		
+		freeDao.inquiry(code);
+		
+		return 0;
 	}
 	
 	@Override
-	public Free recommend(String code) {
-		// TODO Auto-generated method stub
-		return null;
+	public int recommend(String code) {
+		SqlSessionFactory factory = MyBatisMain.getSqlSessionFactory();
+		SqlSession sqlSession = factory.openSession(true);
+		FreeDao freeDao = sqlSession.getMapper(FreeDao.class);
+		
+		freeDao.recommend(code);
+		
+		return 0;
 	}
 
 	

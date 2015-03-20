@@ -60,10 +60,10 @@ public interface FreeDao {
 	@Select("SELECT ISNULL(MAX(CAST(CODE AS INT)), 0) Code  FROM FREEBOARDS")
 	public String lastCode();
 	
-	@Update("UPDATE FREEBOARDS SET CODE='${hit+1}' WHERE CODE='#{code}'")
-	public Free inquiry(String code);
+	@Update("UPDATE FREEBOARDS SET HIT=(CAST(HIT AS INT))+1 WHERE CODE=#{code}")
+	public int inquiry(String code);
 	
-	@Update("UPDATE FREEBOARDS SET CODE='${hit+1}' WHERE CODE='#{code}'")
-	public Free recommend(String code);
+	@Update("UPDATE FREEBOARDS SET THUMB=(CAST(THUMB AS INT))+1 WHERE CODE=#{code}")
+	public int recommend(String code);
 
 }

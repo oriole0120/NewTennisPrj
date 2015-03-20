@@ -11,7 +11,7 @@
 	InformationDao informationDao = sqlSession.getMapper(InformationDao.class); */
 	
 	InformationDao informationDao = new MyBInformationDao();
-	
+	informationDao.inquiry(_code);
 	Information inf = informationDao.getInformation(_code);
 	
 	pageContext.setAttribute("inf", inf);
@@ -30,10 +30,17 @@
     <script>
     	function init(){
     		var btnDelPop=document.getElementById("btn-del-pop");
+    		var btnThumb=document.getElementById("btn-thumb");
     		btnDelPop.onclick=btnDelPopClick;
+    		btnThumb.onclick=btnThumbClick;
     	}
     	function btnDelPopClick(){
     		if(!confirm( '삭제 하시겠습니까?' )){
+    			return false;
+    		}	
+    	}
+    	function btnThumbClick(){
+    		if(!confirm( '추천 하시겠습니까?' )){
     			return false;
     		}	
     	}
@@ -105,6 +112,10 @@
                             <div id="space-top-two">          
                             	<p class="space-top-two text-center">
                                     <a class="btn btn-list" href="list.jsp">목록</a>
+                                </p>
+                                
+                                <p class="space-top-two text-center">
+                                	<a id="btn-thumb" href="thumbProc.jsp?c=${inf.code}">추천</a>
                                 </p>
                                 
                                 <p class="space-top-two text-center">

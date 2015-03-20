@@ -390,4 +390,16 @@ public class JdbcInformationDao implements InformationDao {
 		return null;
 	}
 
+	@Override
+	public int inquiry(String code) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int recommend(String code) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
